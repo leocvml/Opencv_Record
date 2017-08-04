@@ -55,7 +55,7 @@ namespace Sample_Code {
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Button^  button3;
 	private: System::Windows::Forms::Button^  button4;
-	private: System::Windows::Forms::Label^  label2;
+
 	private: System::Windows::Forms::Button^  button5;
 	private: System::Windows::Forms::Button^  button6;
 	private: System::Windows::Forms::Button^  button7;
@@ -63,6 +63,8 @@ namespace Sample_Code {
 	private: System::Windows::Forms::Button^  button9;
 	private: System::Windows::Forms::Button^  button10;
 	private: System::Windows::Forms::Button^  button11;
+	private: System::Windows::Forms::TrackBar^  trackBar1;
+	private: System::Windows::Forms::TextBox^  textBox1;
 
 
 
@@ -78,7 +80,7 @@ namespace Sample_Code {
 		/// the contents of this method with the code editor.
 		/// </summary>
 		void InitializeComponent(void)
-		{
+		{  
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
@@ -90,7 +92,6 @@ namespace Sample_Code {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->button4 = (gcnew System::Windows::Forms::Button());
-			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->button6 = (gcnew System::Windows::Forms::Button());
 			this->button7 = (gcnew System::Windows::Forms::Button());
@@ -98,10 +99,13 @@ namespace Sample_Code {
 			this->button9 = (gcnew System::Windows::Forms::Button());
 			this->button10 = (gcnew System::Windows::Forms::Button());
 			this->button11 = (gcnew System::Windows::Forms::Button());
+			this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
@@ -167,7 +171,7 @@ namespace Sample_Code {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(603, 9);
+			this->label1->Location = System::Drawing::Point(55, 542);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(33, 12);
 			this->label1->TabIndex = 4;
@@ -192,15 +196,6 @@ namespace Sample_Code {
 			this->button4->Text = L"Sobel";
 			this->button4->UseVisualStyleBackColor = true;
 			this->button4->Click += gcnew System::EventHandler(this, &Form1::button4_Click);
-			// 
-			// label2
-			// 
-			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(794, 9);
-			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(33, 12);
-			this->label2->TabIndex = 7;
-			this->label2->Text = L"label2";
 			// 
 			// button5
 			// 
@@ -272,11 +267,33 @@ namespace Sample_Code {
 			this->button11->UseVisualStyleBackColor = true;
 			this->button11->Click += gcnew System::EventHandler(this, &Form1::button11_Click);
 			// 
-			// Form1
+			// trackBar1
 			// 
+			this->trackBar1->Location = System::Drawing::Point(642, -2);
+			this->trackBar1->Maximum = 255;
+			this->trackBar1->Name = L"trackBar1";
+			this->trackBar1->Size = System::Drawing::Size(268, 45);
+			this->trackBar1->TabIndex = 14;
+			this->trackBar1->Scroll += gcnew System::EventHandler(this, &Form1::trackBar1_Scroll);
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(506, 8);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(100, 22);
+			this->textBox1->TabIndex = 15;
+			// 
+			// Form1
+			// 	
+			trackBar1->Visible = false;
+			textBox1->Visible = false;
+
+
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 12);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(1080, 633);
+			this->Controls->Add(this->textBox1);
+			this->Controls->Add(this->trackBar1);
 			this->Controls->Add(this->button11);
 			this->Controls->Add(this->button10);
 			this->Controls->Add(this->button9);
@@ -284,7 +301,6 @@ namespace Sample_Code {
 			this->Controls->Add(this->button7);
 			this->Controls->Add(this->button6);
 			this->Controls->Add(this->button5);
-			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
 			this->Controls->Add(this->label1);
@@ -300,6 +316,7 @@ namespace Sample_Code {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -569,7 +586,9 @@ namespace Sample_Code {
 			}
 
 
-	private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) {
+		trackBar1->Visible = false;
+		textBox1->Visible = false;
 				 if( openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
 					 // 如果成功開檔
 				 {	
@@ -600,7 +619,9 @@ namespace Sample_Code {
 				 label1->Text = "load image ";
 			 } //button
 
-	private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+private: System::Void button2_Click(System::Object^  sender, System::EventArgs^  e) {
+		trackBar1->Visible = false;
+		textBox1->Visible = false;
 		Bitmap^ GrayScale = BGR2gray(temp_img);
 		pictureBox2->Image = nullptr;
 		pictureBox3->Image = nullptr;
@@ -613,6 +634,8 @@ namespace Sample_Code {
 
 	}; //Form
 private: System::Void button3_Click_1(System::Object^  sender, System::EventArgs^  e) {
+	trackBar1->Visible = false;
+	textBox1->Visible = false;
 
 	Bitmap^ R_img = gcnew Bitmap(temp_img->Width, temp_img->Height);
 	Bitmap^ G_img = gcnew Bitmap(temp_img->Width, temp_img->Height);
@@ -644,6 +667,8 @@ private: System::Void button3_Click_1(System::Object^  sender, System::EventArgs
 	
 	}
 private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) {
+	trackBar1->Visible = false;
+	textBox1->Visible = false;
 	Bitmap^ Gray_img = BGR2gray(temp_img);
 	int vector_size = Gray_img->Width * Gray_img->Height;
 	int *img_vector = Bmp2vector(Gray_img);
@@ -657,6 +682,8 @@ private: System::Void button4_Click(System::Object^  sender, System::EventArgs^ 
 }
 
 private: System::Void button6_Click(System::Object^  sender, System::EventArgs^  e) {
+	trackBar1->Visible = false;
+	textBox1->Visible = false;
 	Bitmap^ Gray_img = BGR2gray(temp_img);
 	int vector_size = Gray_img->Width * Gray_img->Height;
 	int *img_vector = Bmp2vector(Gray_img);
@@ -670,7 +697,8 @@ private: System::Void button6_Click(System::Object^  sender, System::EventArgs^ 
 	label1->Text = "Histogram Equalization";
 }
 private: System::Void button7_Click(System::Object^  sender, System::EventArgs^  e) {
-	
+	trackBar1->Visible = true;
+	textBox1->Visible = true;
 	Bitmap^ Gray_img = BGR2gray(temp_img);
 	int vector_size = Gray_img->Width * Gray_img->Height;
 	int *img_vector = Bmp2vector(Gray_img);
@@ -683,11 +711,13 @@ private: System::Void button7_Click(System::Object^  sender, System::EventArgs^ 
 	pictureBox4->Image = nullptr;
 	pictureBox3->Image = threshold_img;
 	pictureBox4->Image = erosion_img;
-	label1->Text = "erosion_(default 100)";
+	label1->Text = "erosion";
 	
 
 }
 private: System::Void button5_Click(System::Object^  sender, System::EventArgs^  e) {
+	trackBar1->Visible = true;
+	textBox1->Visible = true;
 	Bitmap^ Gray_img = BGR2gray(temp_img);
 	int vector_size = Gray_img->Width * Gray_img->Height;
 	int *img_vector = Bmp2vector(Gray_img);
@@ -698,11 +728,12 @@ private: System::Void button5_Click(System::Object^  sender, System::EventArgs^ 
 	pictureBox4->Image = nullptr;
 	pictureBox3->Image = Gray_img;
 	pictureBox4->Image = threshold_img;
-	label1->Text = "threshold default(100)";
+	label1->Text = "threshold";
 
 }
 private: System::Void button8_Click(System::Object^  sender, System::EventArgs^  e) {
-
+	trackBar1->Visible = true;
+	textBox1->Visible = true;
 	Bitmap^ Gray_img = BGR2gray(temp_img);
 	int vector_size = Gray_img->Width * Gray_img->Height;
 	int *img_vector = Bmp2vector(Gray_img);
@@ -715,9 +746,11 @@ private: System::Void button8_Click(System::Object^  sender, System::EventArgs^ 
 	pictureBox4->Image = nullptr;
 	pictureBox3->Image = threshold_img;
 	pictureBox4->Image = dilation_img;
-	label1->Text = "dilation_(default 100)";
+	label1->Text = "dilation";
 }
 private: System::Void button9_Click(System::Object^  sender, System::EventArgs^  e) {
+	trackBar1->Visible = false;
+	textBox1->Visible = false;
 	Bitmap^ Gray_img = BGR2gray(temp_img);
 	int vector_size = Gray_img->Width * Gray_img->Height;
 	int *img_vector = Bmp2vector(Gray_img);
@@ -731,6 +764,8 @@ private: System::Void button9_Click(System::Object^  sender, System::EventArgs^ 
 	label1->Text = "Mean_filter";
 }
 private: System::Void button10_Click(System::Object^  sender, System::EventArgs^  e) {
+	trackBar1->Visible = false;
+	textBox1->Visible = false;
 	Bitmap^ Gray_img = BGR2gray(temp_img);
 	int vector_size = Gray_img->Width * Gray_img->Height;
 	int *img_vector = Bmp2vector(Gray_img);
@@ -745,6 +780,8 @@ private: System::Void button10_Click(System::Object^  sender, System::EventArgs^
 }
 
 private: System::Void button11_Click(System::Object^  sender, System::EventArgs^  e) {
+	trackBar1->Visible = true;
+	textBox1->Visible = true;
 	Bitmap^ Gray_img = BGR2gray(temp_img);
 	int vector_size = Gray_img->Width * Gray_img->Height;
 	int *img_vector = Bmp2vector(Gray_img);
@@ -752,13 +789,79 @@ private: System::Void button11_Click(System::Object^  sender, System::EventArgs^
 	int *threshold_v = threshold(sobel_vector, Gray_img->Width, Gray_img->Height, 100);
 	Bitmap^ Sobel_img = Vector2bmp(threshold_v, Gray_img->Width, Gray_img->Height);
 	Bitmap^ Edge_img = Edge_over(img_vector, threshold_v, Gray_img->Width, Gray_img->Height);
-
 	pictureBox2->Image = nullptr;
 	pictureBox3->Image = nullptr;
 	pictureBox4->Image = nullptr;
 	pictureBox3->Image = Sobel_img;
 	pictureBox4->Image = Edge_img;
 	label1->Text = "EdgeOverlapp";
+}
+private: System::Void trackBar1_Scroll(System::Object^  sender, System::EventArgs^  e) {
+	trackBar1->Visible = true;
+	textBox1->Visible = true;
+	textBox1->Text = String::Concat("", trackBar1->Value);
+	if (label1->Text == "EdgeOverlapp"){
+		Bitmap^ Gray_img = BGR2gray(temp_img);
+		int vector_size = Gray_img->Width * Gray_img->Height;
+		int *img_vector = Bmp2vector(Gray_img);
+		int *sobel_vector = Sobel(img_vector, Gray_img->Width, Gray_img->Height);
+		int *threshold_v = threshold(sobel_vector, Gray_img->Width, Gray_img->Height, trackBar1->Value);
+		Bitmap^ Sobel_img = Vector2bmp(threshold_v, Gray_img->Width, Gray_img->Height);
+		Bitmap^ Edge_img = Edge_over(img_vector, threshold_v, Gray_img->Width, Gray_img->Height);
+		pictureBox2->Image = nullptr;
+		pictureBox3->Image = nullptr;
+		pictureBox4->Image = nullptr;
+		pictureBox3->Image = Sobel_img;
+		pictureBox4->Image = Edge_img;
+		label1->Text = "EdgeOverlapp";
+	}
+	else if (label1->Text == "threshold"){
+		Bitmap^ Gray_img = BGR2gray(temp_img);
+		int vector_size = Gray_img->Width * Gray_img->Height;
+		int *img_vector = Bmp2vector(Gray_img);
+		int *threshold_v = threshold(img_vector, Gray_img->Width, Gray_img->Height, trackBar1->Value);
+		Bitmap^ threshold_img = Vector2bmp(threshold_v, Gray_img->Width, Gray_img->Height);
+		pictureBox2->Image = nullptr;
+		pictureBox3->Image = nullptr;
+		pictureBox4->Image = nullptr;
+		pictureBox3->Image = Gray_img;
+		pictureBox4->Image = threshold_img;
+		label1->Text = "threshold";
+	
+	}
+	else if (label1->Text == "dilation"){
+		Bitmap^ Gray_img = BGR2gray(temp_img);
+		int vector_size = Gray_img->Width * Gray_img->Height;
+		int *img_vector = Bmp2vector(Gray_img);
+		int *threshold_v = threshold(img_vector, Gray_img->Width, Gray_img->Height, trackBar1->Value);
+		int *dilation_v = dilation(threshold_v, Gray_img->Width, Gray_img->Height);
+		Bitmap^ threshold_img = Vector2bmp(threshold_v, Gray_img->Width, Gray_img->Height);
+		Bitmap^ dilation_img = Vector2bmp(dilation_v, Gray_img->Width, Gray_img->Height);
+		pictureBox2->Image = nullptr;
+		pictureBox3->Image = nullptr;
+		pictureBox4->Image = nullptr;
+		pictureBox3->Image = threshold_img;
+		pictureBox4->Image = dilation_img;
+		label1->Text = "dilation";
+
+	}
+	else if (label1->Text == "erosion"){
+		Bitmap^ Gray_img = BGR2gray(temp_img);
+		int vector_size = Gray_img->Width * Gray_img->Height;
+		int *img_vector = Bmp2vector(Gray_img);
+		int *threshold_v = threshold(img_vector, Gray_img->Width, Gray_img->Height, trackBar1->Value);
+		int *erosion_vector = erosion(threshold_v, Gray_img->Width, Gray_img->Height);
+		Bitmap^ threshold_img = Vector2bmp(threshold_v, Gray_img->Width, Gray_img->Height);
+		Bitmap^ erosion_img = Vector2bmp(erosion_vector, Gray_img->Width, Gray_img->Height);
+		pictureBox2->Image = nullptr;
+		pictureBox3->Image = nullptr;
+		pictureBox4->Image = nullptr;
+		pictureBox3->Image = threshold_img;
+		pictureBox4->Image = erosion_img;
+		label1->Text = "erosion";
+
+	}
+
 }
 }; //public
 
